@@ -1,19 +1,23 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { AppLoading } from "expo";
+import Routes from "./src/routes";
+
+import { Ubuntu_700Bold, Ubuntu_500Medium, useFonts } from "@expo-google-fonts/ubuntu";
 
 export default function App() {
+  const [fonts] = useFonts({
+    Ubuntu_700Bold,
+    Ubuntu_500Medium,
+  });
+
+  if (!fonts) {
+    return <AppLoading />;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-    </View>
+    <NavigationContainer>
+      <Routes />
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
